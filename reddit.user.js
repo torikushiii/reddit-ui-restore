@@ -90,13 +90,17 @@
                 item.href = `https://www.reddit.com/${community.prefixedName}`;
                 item.className = 'flex items-center px-4 py-2 text-secondary hover:bg-neutral-background-hover';
 
+                const displayName = community.prefixedName.replace('r/', '');
+
                 if (community.styles?.icon) {
                     item.innerHTML = `
-                        <img src="${community.styles.icon}" class="community-icon mr-3" alt="${community.prefixedName}">
-                        <span>${community.prefixedName}</span>
+                        <div class="community-icon-wrapper">
+                            <img src="${community.styles.icon}" class="community-icon" alt="${displayName}">
+                        </div>
+                        <span class="community-name">${displayName}</span>
                     `;
                 } else {
-                    item.innerHTML = `<span>${community.prefixedName}</span>`;
+                    item.innerHTML = `<span class="community-name">${displayName}</span>`;
                 }
 
                 dropdownContent.appendChild(item);
@@ -355,10 +359,12 @@
 
         .communities-dropdown-content {
             border: 1px solid var(--color-neutral-border-strong);
-            padding: 4px 0;
+            padding: 8px 0;
             max-height: 70vh;
-            width: 240px;
-            border-radius: 4px;
+            width: 260px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            margin-top: 8px;
         }
 
         .communities-dropdown-content a {
@@ -366,15 +372,36 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            padding: 8px 12px;    /* Increased vertical padding slightly */
-            font-size: 14px;    /* Smaller font size */
-            line-height: 1.2;   /* Tighter line height */
+            padding: 10px 14px;
+            font-size: 15px;
+            line-height: 1.3;
+            display: flex;
+            align-items: center;
+            color: var(--color-neutral-content);
+            transition: background-color 0.2s ease;
+            gap: 12px;
+        }
+
+        .community-icon-wrapper {
+            width: 28px;
+            height: 28px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .communities-dropdown-content a img {
-            width: 16px;       /* Smaller icons */
-            height: 16px;
-            margin-right: 8px;
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            object-fit: cover;
+            border: 1px solid var(--color-neutral-border-strong);
+        }
+
+        .community-name {
+            font-weight: 600;
+            font-size: 15px;
         }
 
         .communities-dropdown-content a:hover {
@@ -382,22 +409,23 @@
             background-color: var(--color-neutral-background-hover);
         }
 
-        /* Add smooth scrollbar for the dropdown */
+        /* Scrollbar styling */
         .communities-dropdown-content::-webkit-scrollbar {
             width: 6px;
         }
 
         .communities-dropdown-content::-webkit-scrollbar-track {
             background: transparent;
+            margin: 2px 0;
         }
 
         .communities-dropdown-content::-webkit-scrollbar-thumb {
-            background: #666;
+            background: rgba(155, 155, 155, 0.5);
             border-radius: 3px;
         }
 
         .communities-dropdown-content::-webkit-scrollbar-thumb:hover {
-            background: #888;
+            background: rgba(155, 155, 155, 0.7);
         }
 
         /* Updated header height */
@@ -436,15 +464,9 @@
         }
 
         .communities-dropdown-content {
-            top: 40px;
+            position: absolute;
+            top: 100%;
             left: 0;
-        }
-
-        .communities-dropdown-content .community-icon {
-            width: 24px;          /* Increased from 20px to 24px */
-            height: 24px;         /* Increased from 20px to 24px */
-            border-radius: 4px;
-            object-fit: cover;
         }
     `;
 

@@ -29,8 +29,8 @@ I only tested this script on my own setup, so it might not work properly on your
 
 Before:
 
-![](https://github.com/user-attachments/assets/adb1e787-65a0-498c-890f-4d3cba6303df)
+![image](https://github.com/user-attachments/assets/4ca47a69-d471-4c1e-9dbd-955b30840a31)
 
 After:
 
-![](https://github.com/user-attachments/assets/e27b0973-3e2a-48ec-a3db-6f1ffe235d73)
+![image](https://github.com/user-attachments/assets/cf5a5f43-5eeb-4730-928e-978468bfc155)

@@ -6,7 +6,9 @@ A userscript that partially restores Reddit's Generation 2 UI elements and layou
 This script is designed to work specifically with Reddit's **Compact Layout**. Other layouts may not display correctly.
 
 ## Disclaimer
-This script only implements a subset of Reddit's Gen 2 UI features, primarily focusing on community navigation. Other features from the Gen 2 UI are not implemented because I don't really care and does not use them.
+This script only implements a subset of Reddit's Gen 2 UI features. Other features from the Gen 2 UI are not implemented because I don't really care and does not really use them.
+
+I only tested this script on my own setup, so it might not work properly on your browser or Reddit settings.
 
 ## Installation
 

@@ -79,22 +79,29 @@
         dropdownContent.style.maxHeight = '400px';
         dropdownContent.style.overflowY = 'auto';
 
-        communities.forEach(community => {
-            const item = document.createElement('a');
-            item.href = `https://www.reddit.com/${community.prefixedName}`;
-            item.className = 'flex items-center px-4 py-2 text-secondary hover:bg-neutral-background-hover';
+        if (!communities || communities.length === 0) {
+            const noCommunitiesMsg = document.createElement('div');
+            noCommunitiesMsg.className = 'px-4 py-3 text-secondary text-center';
+            noCommunitiesMsg.textContent = 'Nothing Here';
+            dropdownContent.appendChild(noCommunitiesMsg);
+        } else {
+            communities.forEach(community => {
+                const item = document.createElement('a');
+                item.href = `https://www.reddit.com/${community.prefixedName}`;
+                item.className = 'flex items-center px-4 py-2 text-secondary hover:bg-neutral-background-hover';
 
-            if (community.styles?.icon) {
-                item.innerHTML = `
-                    <img src="${community.styles.icon}" class="community-icon mr-3" alt="${community.prefixedName}">
-                    <span>${community.prefixedName}</span>
-                `;
-            } else {
-                item.innerHTML = `<span>${community.prefixedName}</span>`;
-            }
+                if (community.styles?.icon) {
+                    item.innerHTML = `
+                        <img src="${community.styles.icon}" class="community-icon mr-3" alt="${community.prefixedName}">
+                        <span>${community.prefixedName}</span>
+                    `;
+                } else {
+                    item.innerHTML = `<span>${community.prefixedName}</span>`;
+                }
 
-            dropdownContent.appendChild(item);
-        });
+                dropdownContent.appendChild(item);
+            });
+        }
 
         button.addEventListener('click', () => {
             dropdownContent.classList.toggle('hidden');
@@ -164,6 +171,11 @@
                 }
             });
 
+            if (!response.ok) {
+                insertCommunitiesDropdown([]);
+                return;
+            }
+
             const html = await response.text();
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');
@@ -173,27 +185,30 @@
                 const jsonData = communitiesController.getAttribute('initialStateJSON');
                 const communities = JSON.parse(jsonData);
 
-                setCachedCommunities(communities);
-                insertCommunitiesDropdown(communities);
+                if (communities && communities.length > 0) {
+                    setCachedCommunities(communities);
+                    insertCommunitiesDropdown(communities);
 
-                console.group('Communities Data');
-                communities.forEach(community => {
-                    console.log({
-                        name: community.prefixedName,
-                        id: community.id,
-                        icon: community.styles?.icon || null,
-                        primaryColor: community.styles?.primaryColor || null
+                    console.group('Communities Data');
+                    communities.forEach(community => {
+                        console.log({
+                            name: community.prefixedName,
+                            id: community.id,
+                            icon: community.styles?.icon || null,
+                            primaryColor: community.styles?.primaryColor || null
+                        });
                     });
-                });
-                console.groupEnd();
+                    console.groupEnd();
+                } else {
+                    insertCommunitiesDropdown([]);
+                }
+            } else {
+                insertCommunitiesDropdown([]);
             }
         } catch (error) {
             console.error('Error fetching communities:', error);
-
             const cachedData = getCachedCommunities();
-            if (cachedData) {
-                insertCommunitiesDropdown(cachedData);
-            }
+            insertCommunitiesDropdown(cachedData || []);
         }
     }
 

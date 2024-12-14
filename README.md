@@ -12,7 +12,7 @@ This script is designed to work specifically with Reddit's **Compact Layout**. O
    - [Violentmonkey](https://violentmonkey.github.io/)
    - [Greasemonkey](https://www.greasespot.net/)
 
-2. [Click here to install the script](https://github.com/torikushiii/reddit-ui-restore/raw/main/reddit.js)
+2. [Click here to install the script](https://raw.githubusercontent.com/torikushiii/reddit-ui-restore/main/reddit.user.js)
 
 ## Usage
 

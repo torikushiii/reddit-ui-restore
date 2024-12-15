@@ -17,7 +17,7 @@ I only tested this script on my own setup, so it might not work properly on your
    - [Violentmonkey](https://violentmonkey.github.io/)
    - [Greasemonkey](https://www.greasespot.net/)
 
-2. [Click here to install the script](https://raw.githubusercontent.com/torikushiii/reddit-ui-restore/main/reddit.user.js)
+2. [Click here to install the script](https://github.com/torikushiii/reddit-ui-restore/raw/refs/heads/main/reddit.user.js)
 
 ## Note
 

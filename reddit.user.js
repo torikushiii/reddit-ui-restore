@@ -82,7 +82,7 @@
             background-color: var(--color-neutral-background, #fff);
             border: 1px solid var(--color-neutral-border-strong, #edeff1);
             border-radius: 4px;
-            min-width: 200px;
+            min-width: 240px;
             max-height: 400px;
             overflow-y: auto;
             z-index: 1000;
@@ -407,8 +407,8 @@
         button.innerHTML = `
             <span style="display: flex; align-items: center;">
                 <span>Communities</span>
-                <span style="margin-left: 4px;">
-                    <svg fill="currentColor" height="16" icon-name="caret-down-outline" viewBox="0 0 20 20" width="16" xmlns="http://www.w3.org/2000/svg">
+                <span style="margin-left: 4px; display: flex; align-items: center;">
+                    <svg fill="currentColor" height="16" icon-name="caret-down-outline" viewBox="0 0 20 20" width="16" xmlns="http://www.w3.org/2000/svg" style="display: block;">
                         <path d="M10 13.125a.624.624 0 0 1-.442-.183l-5-5 .884-.884L10 11.616l4.558-4.558.884.884-5 5a.624.624 0 0 1-.442.183Z"></path>
                     </svg>
                 </span>

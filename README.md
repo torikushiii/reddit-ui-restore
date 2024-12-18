@@ -1,4 +1,4 @@
-# Reddit Gen 2 UI Restoration
+# Reddit UI Tweak
 
 A userscript that partially restores the "feels" of Reddit's Generation 2 UI.
 
